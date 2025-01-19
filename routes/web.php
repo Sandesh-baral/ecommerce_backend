@@ -12,14 +12,14 @@ Route::get('/', function () {
 
 Route::get('/author',[AuthorController::class,'index'])->name('author.index');
 Route::get('/author/create',[AuthorController::class,'create'])->name('author.create');
-Route::post('/author/create',[AuthorController::class,'store'])->name('author.store');
+Route::post('/author',[AuthorController::class,'store'])->name('author.store');
 Route::delete('/author/{id}',[AuthorController::class,'destroy'])->name('author.delete');
 Route::get('/author/show/{id}',[AuthorController::class,'show'])->name('author.show');
-
-
-
 Route::put('/author/{id}', [AuthorController::class, 'update'])->name('author.update');
-Route::get('/author/{id}', [AuthorCOntroller::class, 'edit'])->name('author.edit');
+Route::get('/author/{id}/edit', [AuthorCOntroller::class, 'edit'])->name('author.edit');
+
+
+
 
 Route::get('/category',[CategoryController::class,'index'])->name('category.index');
 Route::get('/category/create',[CategoryController::class,'create'])->name('category.create');

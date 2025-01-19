@@ -43,8 +43,8 @@ class AuthorController extends Controller
         $author = new Author();
         $author->name=$request->name;
         $author->designation=$request->designation;
-        // dd("yes");
         $author->save();
+        
         // Author::create($request);
         return redirect()->route('author.index');
 
@@ -55,8 +55,8 @@ class AuthorController extends Controller
      */
     public function show(string $id)
     {
-        $author = Author::findorFaile($id);
-        return view('author.show',compact($author));
+        $author = Author::findOrFail($id);
+        return view('author.show',compact('author'));
     }
 
     /**
@@ -82,7 +82,7 @@ class AuthorController extends Controller
 
 
         );
-        $author = Author::findorFail($id);
+        $author = Author::findOrFail($id);
         $author->name = $request->name;
         $author->designation = $request->designation;
         $author->save();

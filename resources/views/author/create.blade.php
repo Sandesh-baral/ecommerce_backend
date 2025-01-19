@@ -17,11 +17,11 @@ background-color: rgba(55, 65, 81, var(--tw-bg-opacity))">
 
             <form action="{{route('author.store')}}" method="post">
                 @csrf
-                @method('PUT')
+                @method('POST')
 
                 <div>
                     <label for="designation">Designation:</label>
-                    <input type="text" name="designation" placeholder="Designation" value="{{$author->designation}}">
+                    <input type="text" name="designation" placeholder="Designation" value="{{old('designation')}}">
                     @error('designation')
                         <small class ="text-danger">{{$message}} </small>
                         
@@ -29,7 +29,7 @@ background-color: rgba(55, 65, 81, var(--tw-bg-opacity))">
                 </div>
                 <div>
                     <label for="name">Authors Name:</label>
-                    <input type="text" name="name" placeholder=" Name here..." value="{{$author->name}}" >
+                    <input type="text" name="name" placeholder=" Name here..."  value="{{old('name')}}" >
                     @error('name')
                         <small class ="text-danger">{{$message}} </small>
                         
