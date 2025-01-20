@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Category</title>
+    <title>Edit Category</title>
     @vite('resources/css/app.css') <!-- Ensure Vite is configured -->
 </head>
 <body>
@@ -12,7 +12,8 @@
         <h1>Create Category</h1>
 
         <div class="bg-gray-800 p-6 rounded-lg shadow-md text-white">
-            <form action="{{ route('category.store') }}" method="post">
+            
+            <form action="{{ route('category.update', ['id' => $category->id]) }}" method="post">
                 @csrf
                 @method('PUT')
 
@@ -41,7 +42,7 @@
                         name="description" 
                         class="w-full p-2 rounded border border-gray-300" 
                         placeholder="Description here..." 
-                        value="{{$category->body}}" 
+                        value="{{$category->description}}" 
                     >
                     @error('description')
                         <small class="text-red-500">{{ $message }}</small>

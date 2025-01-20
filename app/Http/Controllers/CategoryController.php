@@ -53,7 +53,8 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category=Category::findOrFail($id);
+        return view('category.show',compact('category'));
     }
 
     /**
@@ -61,7 +62,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category= Category::query()->findOrFail($id);
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -69,7 +71,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        // dd($request->all);
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+        ]);
+
+        $category->name=$request->name;
+        $category->description=$request->description;
+        $category->save();
+        return redirect()->route('category.index');
+
     }
 
     /**

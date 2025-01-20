@@ -46,11 +46,13 @@
 
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">
-                            <button type="submit">Edit</button>
+                            <a href="{{route('category.edit', ['id' => $item->id])}}"><button type="submit">Edit</button></a>
+
+                            
                         </div>
-                        <div class="text-sm text-red-500">
-                            <button type="submit">Delete</button>
-                        </div>
+                        {{-- <div class="text-sm text-red-500">
+                        <a href="{{route('category.delete')}}"><button type="submit">Delete</button></a> 
+                        </div> --}}
                     </td>
                     
                 
