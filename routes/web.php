@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Models\Category;
+use App\Http\Controllers\BlogController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,3 +36,6 @@ Route::get('/category/{id}/edit',[CategoryController::class,'edit'])->name('cate
 
 Route::get('/blog',[BlogController::class,'index'])->name('blog.index');
 Route::get('/blog/create',[BlogController::class, 'create'])->name('blog.create');
+Route::post('/blog',[BlogController::class,'store'])->name('blog.store');
+Route::get('/blog/{id}/edit',[BlogController::class,'edit'])->name('blog.edit');
+Route::put('/blog/{id}',[BlogController::class,'update'])->name('blog.update');

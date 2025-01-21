@@ -16,7 +16,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $author = Author::all();
+        
+        $blog = Blog::all();
+        return view('blog.index',compact('blog','author'));
     }
 
     /**
@@ -25,7 +28,7 @@ class BlogController extends Controller
     public function create()
     {   
         $author = Author::all();
-        return view('blog.create',compact($author));
+        return view('blog.create',compact('author'));
     }
 
     /**
@@ -33,13 +36,15 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'title'=>'required|string|min:2',
             'body'=>'required',
             'image'=>'required|max:2048|image|mimes:png,jpg',
             'author_id'=>'required'
         ]);
-
+        
+        // dd($blog->all());
         $blog = new Blog();
         $cloudinaryImage = $request->file('image')->storeOnCloudinary('ecommerce_blog');
         $url=$cloudinaryImage->getSecurePath();
@@ -47,8 +52,11 @@ class BlogController extends Controller
         $blog->title = $request->title;
         $blog->body = $request->body;
         $blog->image_url = $url;
+        $blog->author_id=$request->author_id;
         $blog->image_public_id = $public_id;
         $blog->save();
+        // dd($url,$public_id);
+        return redirect(route('blog.index'))->with('success','Created successfully');
 
     }
 
@@ -57,7 +65,8 @@ class BlogController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+        return view('blog.show',compact('blog'));
     }
 
     /**
@@ -65,7 +74,10 @@ class BlogController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $blog= Blog::findOrFail($id);
+        $author=Author::all();
+        // dd($blog, $author);
+        return view('blog.edit', compact('blog','author'));
     }
 
     /**
@@ -73,7 +85,33 @@ class BlogController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title'=>'required|string|min:2',
+            'body'=>'required',
+            'image'=>'nullable|max:2048|image|mimes:png,jpg',
+            'author_id'=>'required'
+        ]);
+
+        $blog = Blog::findOrFail($id);
+
+
+        if($request->hasfile('image')){
+            Cloudinary::destroy($blog->image_public_id);
+            $cloudinaryImage = $request->file('image')->storeOnCloudinary('ecommerce_blog');
+            $url=$cloudinaryImage->getSecurePath();
+            $public_id = $cloudinaryImage->getPublicId();
+        
+        $blog->update([
+            'image_url'=>$url,
+            'image_public_id'=>$public_id,
+        ]);
+        }
+
+        $blog->title= $request->title;
+        $blog->body=$request->body;
+        $blog->author_id=$request->author_id;
+        $blog->save();
+        return redirect(route('blog.index'))->with('success','Blog updated successfully');
     }
 
     /**

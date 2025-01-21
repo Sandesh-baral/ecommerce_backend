@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('body');
             $table->string('image_url');
             $table->string('image_public_id');
-            $table->unsignedBigint('author_id');
+            $table->unsignedBigInteger('author_id');
             $table->timestamps();
         });
     }
