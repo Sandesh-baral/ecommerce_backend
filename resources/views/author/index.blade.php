@@ -1,3 +1,9 @@
+@extends('admin.admin')
+
+@section('content')
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +14,11 @@
 </head>
 <body>
 
-    
+    <a href="{{ route('author.create') }}" class="inline-block">
+        <button class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Create Category
+        </button>
+    </a>
     <table class="min-w-full table-auto divide-y divide-gray-200">
         <thead>
             <tr>
@@ -71,3 +81,6 @@
     
 </body>
 </html>
+
+
+@endsection

@@ -50,9 +50,7 @@ Auth::routes();
 
 
 
-Route::view('/admin', 'dashboard')->name('dashboard');
-Route::view('/admin/users', 'users')->name('users');
-Route::view('/admin/settings', 'settings')->name('settings');
+Route::view('/admin', 'admin/dashboard')->name('dashboard');
 Route::get('/logout', function () {
     // Add logout logic here
     return redirect('/login');
