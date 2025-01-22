@@ -1,11 +1,12 @@
 <?php
 
+
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Models\Category;
 use App\Http\Controllers\BlogController;
-
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,3 +45,15 @@ Route::put('/blog/{id}',[BlogController::class,'update'])->name('blog.update');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
+
+
+
+
+
+Route::view('/admin', 'dashboard')->name('dashboard');
+Route::view('/admin/users', 'users')->name('users');
+Route::view('/admin/settings', 'settings')->name('settings');
+Route::get('/logout', function () {
+    // Add logout logic here
+    return redirect('/login');
+})->name('logout');
