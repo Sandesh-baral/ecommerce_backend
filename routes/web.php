@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -79,3 +80,14 @@ Route::get('/logout', function () {
     // Add logout logic here
     return redirect('/login');
 })->name('logout');
+
+
+
+// Product
+
+Route::get('/product/create',[ProductController::class, 'create'])->name('product.create');
+Route::post('/product',[ProductController::class,'store'])->name('product.store');
+Route::get('/product',[ProductController::class,'index'])->name('product.index');
+Route::get('/product/{id}/edit',[ProductController::class, 'edit'])->name('product.edit');
+
+Route::put('/product',[ProductController::class,'update'])->name('product.update');
