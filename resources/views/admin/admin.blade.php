@@ -32,6 +32,7 @@
                 <a href="{{ route('author.index') }}" class="block px-4 py-2 hover:bg-gray-700">Author</a>
                 <a href="{{ route('blog.index') }}" class="block px-4 py-2 hover:bg-gray-700">Blog</a>
                 <a href="{{ route('category.index') }}" class="block px-4 py-2 hover:bg-gray-700">Category</a>
+                <a href="{{ route('product.index') }}" class="block px-4 py-2 hover:bg-gray-700">Product</a>
             </nav>
         </div>
 

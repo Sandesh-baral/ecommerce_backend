@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Models\Author;
-use App\Models\Blog;
 
 class BlogController extends Controller
 {

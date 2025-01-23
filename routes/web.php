@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EcommerceController;
 
 
 Route::get('/', function () {
@@ -15,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 
@@ -68,14 +69,16 @@ Route::prefix('blogs')
         Route::get('/create', [BlogController::class, 'create'])->name('create');
         Route::post('/', [BlogController::class, 'store'])->name('store');
         Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('edit');
+       ;
         Route::put('/{id}', [BlogController::class, 'update'])->name('update');
     });
 
+    Route::get('/ecommerce',[EcommerceController::class,'index'])->name('ecommerce.index');
+    Route::get('/ecommerce/{id}/show', [EcommerceController::class, 'show'])->name('ecommerce.show');
 
 
 
-
-Route::view('/admin', 'admin/dashboard')->name('dashboard');
+//Route::view('/admin', 'admin/dashboard')->name('dashboard');
 Route::get('/logout', function () {
     // Add logout logic here
     return redirect('/login');
