@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
@@ -94,3 +95,10 @@ Route::get('/product',[ProductController::class,'index'])->name('product.index')
 Route::get('/product/{id}/edit',[ProductController::class, 'edit'])->name('product.edit');
 
 Route::put('/product',[ProductController::class,'update'])->name('product.update');
+
+
+//Slider 
+
+Route::get('/slider/create',[SliderController::class, 'create'])->name('slider.create');
+Route::post('/slider',[SliderController::class, 'store'])->name('slider.store');
+Route::get('/slider',[SliderController::class,'show'])->name('slider.show');
