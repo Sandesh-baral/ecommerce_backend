@@ -11,6 +11,10 @@ use App\Models\Author;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');  // Apply middleware to the entire controller
+    }
     /**
      * Display a listing of the resource.
      */
@@ -40,7 +44,7 @@ class BlogController extends Controller
         $request->validate([
             'title'=>'required|string|min:2',
             'body'=>'required',
-            'image'=>'required|max:2048|image|mimes:png,jpg',
+            'image'=>'required|max:2048|image|mimes:png,jpg,jpeg',
             'author_id'=>'required'
         ]);
         

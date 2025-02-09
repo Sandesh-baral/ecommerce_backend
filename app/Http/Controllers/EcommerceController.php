@@ -9,6 +9,11 @@ use App\Models\Blog;
 
 class EcommerceController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');  // Apply middleware to the entire controller
+    }
     /**
      * Display a listing of the resource.
      */
